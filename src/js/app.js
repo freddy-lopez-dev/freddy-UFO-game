@@ -57,6 +57,14 @@ class Enemy {
     if (this.direction === 'rtl') {
       this.x -= 40 * dt;
     }
+
+    if (this.x <= 0) {
+      this.direction = 'ltr';
+    }
+
+    if (this.x >= canvas.width - 105) {
+      this.direction = 'rtl';
+    }
   }
 
   checkCollision(x, y) {
@@ -117,11 +125,11 @@ class Player {
 
 const allEnemies = [
   new Enemy(0, 105, 'ltr', 'enemy1'),
-  new Enemy(canvas.width - 105, 210, 'rtl', 'enemy2'),
+  new Enemy(750, 210, 'rtl', 'enemy2'),
   new Enemy(0, 315, 'ltr', 'enemy3'),
 ];
-const player = new Player((canvas.width - 105) / 2, canvas.height - 105);
-const sun = new Sun((canvas.width - 105) / 2, 0);
+const player = new Player(400, 420);
+const sun = new Sun(400, 0);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
